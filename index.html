@@ -1,91 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
-    <!-- Makes the website responsive on mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="AI or Human Text Detector and Natural Writing Editor"
+    >
 
     <title>AI or Human Detector</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================================
+         MAIN CONTAINER
+    ========================================== -->
+
     <div class="container">
 
-        <!-- HEADER -->
-        <header class="header">
-            <div class="badge">AI TEXT ANALYZER</div>
 
-            <h1>AI or Human?</h1>
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header class="header">
+
+            <div class="badge">
+                AI TEXT ANALYZER
+            </div>
+
+
+            <h1>
+                AI or Human?
+            </h1>
+
 
             <p>
                 Analyze text and estimate whether it contains
                 AI-like or human-like writing patterns.
             </p>
+
         </header>
 
 
-        <!-- TEXT INPUT -->
+
+        <!-- =====================================
+             TEXT INPUT CARD
+        ====================================== -->
+
         <section class="input-card">
 
-            <div class="textarea-header">
-                <h2>Enter your text</h2>
 
-                <button id="clearButton" class="clear-button">
+            <!-- TEXTAREA HEADER -->
+
+            <div class="textarea-header">
+
+                <h2>
+                    Enter Your Text
+                </h2>
+
+
+                <button
+                    id="clearButton"
+                    class="clear-button"
+                    type="button"
+                >
                     Clear
                 </button>
+
             </div>
+
+
+
+            <!-- TEXTAREA -->
 
             <textarea
                 id="textInput"
                 placeholder="Paste or type your text here..."
                 spellcheck="true"
+                aria-label="Text to analyze"
             ></textarea>
+
+
+
+            <!-- INPUT FOOTER -->
 
             <div class="input-footer">
 
+
+                <!-- COUNTERS -->
+
                 <div class="counter">
-                    <span id="wordCount">0</span> words
-                    <span class="separator">•</span>
-                    <span id="characterCount">0</span> characters
+
+                    <span id="wordCount">
+                        0
+                    </span>
+
+                    words
+
+
+                    <span class="separator">
+                        •
+                    </span>
+
+
+                    <span id="characterCount">
+                        0
+                    </span>
+
+                    characters
+
                 </div>
 
-                <button id="analyzeButton" class="analyze-button">
-                    Analyze Text
-                </button>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-group">
+
+
+                    <button
+                        id="analyzeButton"
+                        class="analyze-button"
+                        type="button"
+                    >
+                        Analyze Text
+                    </button>
+
+
+                    <button
+                        id="humanizeButton"
+                        class="humanize-button"
+                        type="button"
+                    >
+                        Humanize Text
+                    </button>
+
+
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- LOADING -->
-        <div id="loading" class="loading hidden">
+
+        <!-- =====================================
+             LOADING
+        ====================================== -->
+
+        <div
+            id="loading"
+            class="loading hidden"
+        >
+
             <div class="spinner"></div>
-            <span>Analyzing text...</span>
+
+            <span>
+                Processing text...
+            </span>
+
         </div>
 
 
-        <!-- ERROR -->
-        <div id="errorBox" class="error hidden"></div>
+
+        <!-- =====================================
+             ERROR MESSAGE
+        ====================================== -->
+
+        <div
+            id="errorBox"
+            class="error hidden"
+        ></div>
 
 
-        <!-- RESULT -->
-        <section id="resultSection" class="result-section hidden">
+
+        <!-- =====================================
+             HUMANIZED TEXT
+        ====================================== -->
+
+        <section
+            id="humanizedSection"
+            class="humanized-section hidden"
+        >
+
+
+            <div class="humanized-header">
+
+
+                <div>
+
+                    <span class="result-label">
+                        NATURAL WRITING EDITOR
+                    </span>
+
+
+                    <h2>
+                        Humanized Version
+                    </h2>
+
+                </div>
+
+
+
+                <button
+                    id="copyButton"
+                    class="copy-button"
+                    type="button"
+                >
+                    Copy Text
+                </button>
+
+
+            </div>
+
+
+
+            <textarea
+                id="humanizedText"
+                class="humanized-text"
+                readonly
+                aria-label="Humanized text"
+            ></textarea>
+
+
+
+            <div class="humanized-actions">
+
+
+                <button
+                    id="useHumanizedButton"
+                    class="use-button"
+                    type="button"
+                >
+                    Use This Text
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             RESULT SECTION
+        ====================================== -->
+
+        <section
+            id="resultSection"
+            class="result-section hidden"
+        >
+
 
             <!-- MAIN RESULT -->
+
             <div class="main-result">
+
+
+                <!-- SCORE -->
 
                 <div class="score-container">
 
-                    <div id="scoreCircle" class="score-circle">
+                    <div
+                        id="scoreCircle"
+                        class="score-circle"
+                    >
 
                         <div class="score-inner">
-                            <span id="aiScore">0%</span>
-                            <small>AI estimate</small>
+
+                            <span id="aiScore">
+                                0%
+                            </span>
+
+
+                            <small>
+                                AI estimate
+                            </small>
+
                         </div>
 
                     </div>
@@ -93,108 +302,188 @@
                 </div>
 
 
+
+                <!-- RESULT INFORMATION -->
+
                 <div class="result-information">
+
 
                     <div class="result-label">
                         RESULT
                     </div>
 
+
                     <h2 id="resultTitle">
                         —
                     </h2>
+
 
                     <p id="confidenceText">
                         Confidence: —
                     </p>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- AI / HUMAN BARS -->
+
+            <!-- =================================
+                 AI / HUMAN COMPARISON
+            ================================== -->
+
             <div class="comparison">
+
+
+                <!-- AI -->
 
                 <div class="comparison-item">
 
+
                     <div class="comparison-header">
-                        <span>AI-like signals</span>
-                        <strong id="aiPercentage">0%</strong>
+
+                        <span>
+                            AI-like signals
+                        </span>
+
+
+                        <strong id="aiPercentage">
+                            0%
+                        </strong>
+
                     </div>
 
+
                     <div class="progress-background">
+
                         <div
                             id="aiProgress"
                             class="progress ai-progress"
                         ></div>
+
                     </div>
+
 
                 </div>
 
 
+
+                <!-- HUMAN -->
+
                 <div class="comparison-item">
 
+
                     <div class="comparison-header">
-                        <span>Human-like signals</span>
-                        <strong id="humanPercentage">0%</strong>
+
+                        <span>
+                            Human-like signals
+                        </span>
+
+
+                        <strong id="humanPercentage">
+                            0%
+                        </strong>
+
                     </div>
 
+
                     <div class="progress-background">
+
                         <div
                             id="humanProgress"
                             class="progress human-progress"
                         ></div>
+
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- STATISTICS -->
+
+            <!-- =================================
+                 TEXT STATISTICS
+            ================================== -->
+
             <h3 class="section-title">
                 Text Statistics
             </h3>
 
-            <div id="statistics" class="statistics"></div>
+
+            <div
+                id="statistics"
+                class="statistics"
+            ></div>
 
 
-            <!-- EXPLANATION -->
+
+            <!-- =================================
+                 HOW IT WORKS
+            ================================== -->
+
             <div class="explanation">
 
-                <h3>How was this calculated?</h3>
+
+                <h3>
+                    How Was This Calculated?
+                </h3>
+
 
                 <p>
-                    The detector examines linguistic patterns such as
-                    sentence-length variation, vocabulary diversity,
-                    repeated words, contractions, personal pronouns,
-                    punctuation patterns and common AI-style phrases.
+
+                    The detector examines linguistic patterns
+                    such as sentence-length variation,
+                    vocabulary diversity, repeated words,
+                    contractions, personal pronouns,
+                    punctuation patterns and commonly
+                    occurring AI-style phrases.
+
                 </p>
+
 
             </div>
 
 
-            <!-- WARNING -->
+
+            <!-- =================================
+                 WARNING
+            ================================== -->
+
             <div class="warning">
 
-                <strong>Important:</strong>
+                <strong>
+                    Important:
+                </strong>
 
                 AI detection is not proof of authorship.
-                Human-written text can sometimes appear AI-generated,
-                and AI-generated text can sometimes appear human-written.
+                Human-written text can sometimes appear
+                AI-generated, and AI-generated text can
+                sometimes appear human-written.
+
                 Use this result only as an estimate.
 
             </div>
 
+
         </section>
 
 
-        <!-- FOOTER -->
+
+        <!-- =====================================
+             FOOTER
+        ====================================== -->
+
         <footer>
 
             <p>
                 AI or Human Detector
             </p>
+
 
             <span>
                 Built with HTML, CSS and JavaScript
@@ -202,10 +491,16 @@
 
         </footer>
 
+
     </div>
 
 
+
+    <!-- JAVASCRIPT -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
